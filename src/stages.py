@@ -7,8 +7,8 @@ the state parameter, has full access to the state of the pipeline, such
 as config, options, DRMAA and the logger.
 '''
 
-from utils import safe_make_dir
-from runner import run_stage
+from pipeline_base.utils import safe_make_dir
+from pipeline_base.runner import run_stage
 import os
 
 
