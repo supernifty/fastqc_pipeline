@@ -23,38 +23,10 @@ def make_pipeline(state):
         output=input_files)
 
     pipeline.transform(
-        task_func=stages.stage1,
-        name='stage1',
+        task_func=stages.fastqc,
+        name='fastqc',
         input=output_from('original_files'),
-        filter=suffix('.0'),
-        output='.1')
-
-    pipeline.transform(
-        task_func=stages.stage2,
-        name='stage2',
-        input=output_from('stage1'),
-        filter=suffix('.1'),
-        output='.2')
-
-    pipeline.transform(
-        task_func=stages.stage3,
-        name='stage3',
-        input=output_from('stage2'),
-        filter=suffix('.2'),
-        output='.3')
-
-    pipeline.transform(
-        task_func=stages.stage4,
-        name='stage4',
-        input=output_from('stage3'),
-        filter=suffix('.3'),
-        output='.4')
-
-    pipeline.transform(
-        task_func=stages.stage5,
-        name='stage5',
-        input=output_from('stage4'),
-        filter=suffix('.4'),
-        output='.5')
+        filter=suffix('.fastq.gz'),
+        output='_fastqc')
 
     return pipeline

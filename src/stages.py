@@ -26,32 +26,9 @@ class Stages(object):
         '''Original files'''
         pass
 
+    def fastqc(self, fastq_in, dir_out):
+        '''Quality check fastq file using fastqc'''
+        safe_make_dir(dir_out)
+        command = '{command_dir}/fastqc --extract -o {dir} {fastq}'.format(command_dir="/mnt/vicnode_nfs/tools/FastQC", dir=dir_out, fastq=fastq_in)
+        run_stage(self.state, 'fastqc', command)
 
-    def stage1(self, input, output):
-        '''stage 1'''
-        command = "./stage1.sh {input} {output}".format(input=input, output=output)
-        run_stage(self.state, 'stage1', command)
-
-
-    def stage2(self, input, output):
-        '''stage 2'''
-        command = "./stage2.sh {input} {output}".format(input=input, output=output)
-        run_stage(self.state, 'stage2', command)
-
-
-    def stage3(self, input, output):
-        '''stage 3'''
-        command = "./stage3.sh {input} {output}".format(input=input, output=output)
-        run_stage(self.state, 'stage3', command)
-
-
-    def stage4(self, input, output):
-        '''stage 4'''
-        command = "./stage4.sh {input} {output}".format(input=input, output=output)
-        run_stage(self.state, 'stage4', command)
-
-
-    def stage5(self, input, output):
-        '''stage 5'''
-        command = "./stage5.sh {input} {output}".format(input=input, output=output)
-        run_stage(self.state, 'stage5', command)
